@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <math.h>
 
+unsigned int size(char num[]){
+    unsigned int i=0;
+    while(num[i]!='\0'){
+        i++;
+    }
+    return i;
+}
+
 long int str2int(char num[]){
     int i=0;
     long int intnum=0;
@@ -12,29 +20,28 @@ long int str2int(char num[]){
 }
 
 int main(){
-    char uin[32];
+    char uin[32]; // Declaring a String
+
+    //Taking the user input as string
     printf("Enter a number:\n");
     scanf("%s", uin);
+
+    //Calling the str2int function to convert the string user input to an integer
     long int num = str2int(uin);
-    int ams=0;
-    int i=0;
-    long int sum=0;
-    while(sum<num){
-        sum=0;
-        i++;
-        for(int j=0; uin[j]!='\0';j++){
-            sum += pow((uin[j]-'0'),i);
-        }
-        if(num==sum){
-            ams=1;
-            break;
-        }
+
+    int i=size(uin); //size or length or the number of digits
+    long int sum=0; //a variable to store the sum of the power of each digit
+
+    // for loop to loop until the end of string and calculate the sum of power of each digits
+    for(int j=0; uin[j]!='\0';j++){
+        sum += pow((uin[j]-'0'),i); //(uin[j]-'0') this converts char to int by using the ASCII table
     }
-    if(ams==1){
-        printf("The number is a Amstrong Number at power %d\n", i);
+
+    if(num==sum){
+        printf("The number is a Amstrong Number\n");
     }
     else{
-        printf("The number is not a Amstrong Number and the sum of power exceeds the original value at power %d\n",i);
+        printf("The number is not a Amstrong Number\n");
     }
     return 0;
 }
