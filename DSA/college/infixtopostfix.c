@@ -47,12 +47,12 @@ void evaluate(){
             pop();
             break;
             case '*':
-            case '?':
+            case '/':
             case '%':
             case '+':
             case '-':
             if (precedence(stack[top])>=precedence(infix[i])){
-                while(precedence(stack[top]<precedence(infix[i]))){
+                while(precedence(stack[top]>=precedence(infix[i]))){
                     postfix[postfixpos]=infix[i];
                     postfixpos++;
                 }
